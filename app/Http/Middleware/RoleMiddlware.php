@@ -17,8 +17,8 @@ class RoleMiddlware
     {
         $role = auth('api')->user()->role;
 
-        if(! in_array($role, $roles)){
-            return response()->json(['message' => 'unauthorized'],403);
+        if (!in_array($role, $roles)) {
+            return response()->json(['message' => 'unauthorized'], 403);
         }
         return $next($request);
     }
