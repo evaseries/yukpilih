@@ -180,8 +180,7 @@
           </nav>
             </div>
             <a href="poll/lihatPoll" class="btn btn-primary">lihat poll</a>
-
-        </div>
+          </div>
       </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
@@ -209,7 +208,6 @@
         container.appendChild(div);
     });
 
-    // Event delegation to handle click event on remove choice button
     document.getElementById("choices-container").addEventListener("click", function(e) {
         if (e.target.classList.contains("remove-choice")) {
             e.target.parentElement.remove();

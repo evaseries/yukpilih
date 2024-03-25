@@ -1,5 +1,3 @@
-@extends('layout.index')
-@section('lihatpoll')
 <div class="col-4" style="transform: translateX(40px)">
     <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#poll">
         lihat poll
@@ -44,4 +42,3 @@
         </div>
     </div>
 </div>
-@endsection

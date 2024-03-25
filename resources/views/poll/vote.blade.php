@@ -1,5 +1,3 @@
-@extends('layout.app')
-@section('content')
 <div class="col-4">
     <form class="py-5 px-5 border mt-5" action="/poll/vote" method="post"  style="transform: translateX(40px)" >
         <div class="row mb-3">
@@ -34,4 +32,3 @@
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
-@endsection
