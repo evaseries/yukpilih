@@ -162,11 +162,11 @@
     </div>
 
     <!--- Modal Register --->
-    <div class="modal fade" id="register" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -302,7 +302,9 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        <a href="">Lihat</a>
+                        <button type="submit" class="btn btn-success">vote</button>
+                        <button type="button" aria-labelledby="exampleModalLabel" aria-hidden="true" class=" btn btn-primary">lihat hasil</button>
+
                     </div>
                 </div>
             </div>`);
