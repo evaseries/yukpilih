@@ -160,48 +160,53 @@
             </form>
         </div>
     </div>
-
-    <!--- Modal Register --->
-    <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel"></h1>
+      {{-- modal lihat hasil --}}
+            <!-- Modal -->
+            <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Poll</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST">
-                        @csrf
-                        <div class="form-group">
-                            <label for="username">username</label>
-                            <input type="username" class="form-control" id="username" name="username"
-                                placeholder="Enter username">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" name="password"
-                                placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <label for="role">role</label>
-                            <input type="role" class="form-control" id="role" name="role"
-                                placeholder="role">
-                        </div>
-                        <div class="form-group">
-                            <label for="division">division</label>
-                            <input type="division" class="form-control" id="division" name="division"
-                                placeholder="division">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="judul_poll">Judul Poll</label>
+                      <input type="text" class="form-control" id="judul_poll" name="title" placeholder="Masukkan Judul Poll">
+                    </div>
+                    <div class="form-group">
+                      <label for="deskripsi_poll">Deskripsi Poll</label>
+                      <input type="text" class="form-control" id="deskripsi_poll" name="description" placeholder="Masukkan Deskripsi Poll">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="deadline">Deadline</label>
+                      <input type="date" class="form-control" id="deadline" name="deadline">
+                    </div>
+                    <div class="form-group">
+                      <label for="hasil_poll">Hasil Poll</label>
+                      <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="" class="btn btn-primary">login</button>
+                  </div>
                 </div>
-
+              </div>
             </div>
+          </div>
         </div>
-    </div>
+      </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
@@ -303,11 +308,62 @@
                     </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">vote</button>
-                        <button type="button" aria-labelledby="exampleModalLabel" aria-hidden="true" class=" btn btn-primary">lihat hasil</button>
+                        <div class="container">
+        <div class="row mt-5">
+          <div class="col-12 mb-5">
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
 
                     </div>
                 </div>
-            </div>`);
+            </div>
+            {{-- modal lihat hasil --}}
+            <!-- Modal -->
+            <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Poll</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group">
+                      <label for="judul_poll">Judul Poll</label>
+                      <input type="text" class="form-control" id="judul_poll" name="title" placeholder="Masukkan Judul Poll">
+                    </div>
+                    <div class="form-group">
+                      <label for="deskripsi_poll">Deskripsi Poll</label>
+                      <input type="text" class="form-control" id="deskripsi_poll" name="description" placeholder="Masukkan Deskripsi Poll">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label for="deadline">Deadline</label>
+                      <input type="date" class="form-control" id="deadline" name="deadline">
+                    </div>
+                    <div class="form-group">
+                      <label for="hasil_poll">Hasil Poll</label>
+                      <div class="progress">
+                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
+                      </div>
+                      <div class="progress mt-2">
+                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>`);
                     });
                 },
                 error: function(error) {
