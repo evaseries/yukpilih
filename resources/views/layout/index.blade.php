@@ -47,16 +47,12 @@
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
-                    <button type="button" onclick="logout()" class="btn btn-light">logout</button>
+                    <button type="button id='btnLogout" onclick="logout()" class="btn btn-light">logout</button>
                 </form>
 
                 <div class="d-block" id="btnAuth">
                     <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#login">
                         masuk
-                    </button>
-
-                    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#register">
-                        register
                     </button>
                 </div>
             </div>
@@ -128,6 +124,26 @@
         </div>
     </div>
 
+
+
+<!-- Modal for confirmation -->
+<div class="modal fade" id="confirmDeletePoll" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              Are you sure you want to delete this poll?
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+              <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+          </div>
+      </div>
+  </div>
+</div>
 
     <!--- Modal Login --->
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -306,6 +322,10 @@
                         ${choices.join('')}
                         </div>
                     </div>
+                    <!-- Add delete button and modal for confirmation -->
+                      <div class="card-footer">
+                        <button type="button" class="btn btn-danger id="btndelete" delete-poll" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll">Delete</button>
+                      </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-success">vote</button>
                         <div class="container">
@@ -404,7 +424,6 @@
                 }
             });
         });
-
         $('#choices-container').on('click', '.remove-choice', function() {
             $(this).closest('.choice-input').remove();
         });
@@ -419,6 +438,41 @@
             localStorage.removeItem('token');
             window.location.reload();
         }
+        // Bind click event to delete buttons
+$(document).on('click', '.delete-poll', function() {
+    // Retrieve the poll ID from data attribute
+    let pollId = $(this).data('poll-id');
+    // Store the poll ID in a hidden input field inside the modal
+    $('#confirmDeletePoll').find('input[name="pollId"]').val(pollId);
+});
+
+// Handle delete confirmation
+$('#confirmDelete').click(function() {
+    // Retrieve the poll ID from the hidden input field
+    let pollId = $('#confirmDeletePoll').find('input[name="pollId"]').val();
+    // Call the function to delete the poll
+    deletePoll(pollId);
+});
+
+// Function to delete the poll
+function deletePoll(pollId) {
+    $.ajax({
+        url: '/api/poll/' + pollId,
+        type: 'DELETE',
+        beforeSend: function(xhr) {
+            xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+        },
+        success: function(response) {
+            // Reload the page or update the poll list
+            window.location.reload();
+        },
+        error: function(error) {
+            console.log(error.responseJSON.error);
+            // Handle error
+        }
+    });
+}
+
     </script>
 </body>
 
