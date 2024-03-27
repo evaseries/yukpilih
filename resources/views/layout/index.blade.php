@@ -7,6 +7,8 @@
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body>
@@ -102,14 +104,18 @@
                                                 class="btn btn-danger remove-choice">Remove</button>
                                         </div>
                                     </div>
-                                    <button type="button" class="btn btn-primary" id="add-choice">Add
-                                        Choice</button>
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" id="add-choice">Add
+                                            Choice</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -126,24 +132,25 @@
 
 
 
-<!-- Modal for confirmation -->
-<div class="modal fade" id="confirmDeletePoll" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              Are you sure you want to delete this poll?
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
-          </div>
-      </div>
-  </div>
-</div>
+    <!-- Modal for confirmation -->
+    <div class="modal fade" id="confirmDeletePoll" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Deletion</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete this poll?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!--- Modal Login --->
     <div class="modal fade" id="login" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -176,53 +183,59 @@
             </form>
         </div>
     </div>
-      {{-- modal lihat hasil --}}
-            <!-- Modal -->
-            <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
+    {{-- modal lihat hasil --}}
+    <!-- Modal -->
+    <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Poll</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
+                </div>
+                <div class="modal-body">
                     <div class="form-group">
-                      <label for="judul_poll">Judul Poll</label>
-                      <input type="text" class="form-control" id="judul_poll" name="title" placeholder="Masukkan Judul Poll">
+                        <label for="judul_poll">Judul Poll</label>
+                        <input type="text" class="form-control" id="judul_poll" name="title"
+                            placeholder="Masukkan Judul Poll">
                     </div>
                     <div class="form-group">
-                      <label for="deskripsi_poll">Deskripsi Poll</label>
-                      <input type="text" class="form-control" id="deskripsi_poll" name="description" placeholder="Masukkan Deskripsi Poll">
+                        <label for="deskripsi_poll">Deskripsi Poll</label>
+                        <input type="text" class="form-control" id="deskripsi_poll" name="description"
+                            placeholder="Masukkan Deskripsi Poll">
                     </div>
                     <div class="form-group mb-4">
-                      <label for="deadline">Deadline</label>
-                      <input type="date" class="form-control" id="deadline" name="deadline">
+                        <label for="deadline">Deadline</label>
+                        <input type="date" class="form-control" id="deadline" name="deadline">
                     </div>
                     <div class="form-group">
-                      <label for="hasil_poll">Hasil Poll</label>
-                      <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
-                      </div>
+                        <label for="hasil_poll">Hasil Poll</label>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
+                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
+                        </div>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
+                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
+                        </div>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
+                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
+                        </div>
+                        <div class="progress mt-2">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"
+                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
                 </div>
-              </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
+    </div>
+    </div>
+    </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
@@ -232,6 +245,9 @@
         crossorigin="anonymous"></script>
 
     <script>
+
+        var pollID = '';
+
         getUserInfo();
 
         getPoll();
@@ -324,15 +340,12 @@
                     </div>
                     <!-- Add delete button and modal for confirmation -->
                       <div class="card-footer">
-                        <button type="button" class="btn btn-danger id="btndelete" delete-poll" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll">Delete</button>
+                        <button type="button" class="btn btn-danger btndelete" id="btndelete" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll"><i class="bi bi-trash"></i></button>
+                        <button type="submit" class="btn btn-success">Vote</button>
+                        <div class="col-md-auto float-end"
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
+                        </div>
                       </div>
-                    <div class="card-footer">
-                        <button type="submit" class="btn btn-success">vote</button>
-                        <div class="container">
-        <div class="row mt-5">
-          <div class="col-12 mb-5">
-            <!-- Button trigger modal -->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
 
                     </div>
                 </div>
@@ -438,41 +451,49 @@
             localStorage.removeItem('token');
             window.location.reload();
         }
-        // Bind click event to delete buttons
-$(document).on('click', '.delete-poll', function() {
-    // Retrieve the poll ID from data attribute
-    let pollId = $(this).data('poll-id');
-    // Store the poll ID in a hidden input field inside the modal
-    $('#confirmDeletePoll').find('input[name="pollId"]').val(pollId);
-});
 
-// Handle delete confirmation
-$('#confirmDelete').click(function() {
-    // Retrieve the poll ID from the hidden input field
-    let pollId = $('#confirmDeletePoll').find('input[name="pollId"]').val();
-    // Call the function to delete the poll
-    deletePoll(pollId);
-});
-
-// Function to delete the poll
-function deletePoll(pollId) {
-    $.ajax({
-        url: '/api/poll/' + pollId,
-        type: 'DELETE',
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
-        },
-        success: function(response) {
-            // Reload the page or update the poll list
-            window.location.reload();
-        },
-        error: function(error) {
-            console.log(error.responseJSON.error);
-            // Handle error
-        }
+    $(document).on('click', '.btndelete', function(event){
+        pollID = $(this).attr('data-poll-id');
+        console.log(pollID);
     });
-}
+        
+        // Function to delete the poll
+    function deletePoll(pollId) {
+        $.ajax({
+            url: '/api/poll/' + pollID,
+            type: 'DELETE',
+            beforeSend: function(xhr) {
+                xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+            },
+            success: function(response) {
+                // Reload the page or update the poll list
+                window.location.reload();
+            },
+            error: function(error) {
+                console.log(error.responseJSON.error);
+                // Handle error
+            }
+        });
+    }
 
+    $(document).ready(function() {
+        // Ketika tombol Delete di modal diklik
+        $('#confirmDelete').click(function() {
+            var pollId = $('#confirmDeletePoll').data('poll-id');
+            // Panggil fungsi deletePoll dengan ID yang sesuai
+            deletePoll(pollId);
+            // Tutup modal setelah penghapusan berhasil
+            $('#confirmDeletePoll').modal('hide');
+        });
+
+        // Ketika tombol delete di luar modal diklik
+        $('.delete-btn').click(function() {
+            // Mendapatkan ID item yang akan dihapus
+            var pollId = $(this).data('poll-id');
+            // Menyimpan ID item dalam modal
+            $('#confirmDeletePoll').data('poll-id', pollId);
+        });
+    });
     </script>
 </body>
 
