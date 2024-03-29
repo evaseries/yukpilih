@@ -12,8 +12,8 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg bg-body-tertiary shadow">
+        <div class="container">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -341,7 +341,7 @@
                     <!-- Add delete button and modal for confirmation -->
                       <div class="card-footer">
                         <button type="button" class="btn btn-danger btndelete" id="btndelete" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll"><i class="bi bi-trash"></i></button>
-                        <button type="submit" class="btn btn-success">Vote</button>
+                        <a href="{{ route('vote.index') }}" type="button" class="btn btn-success vote-poll" data-poll-id="1">Vote</a>
                         <div class="col-md-auto float-end"
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
                         </div>
@@ -494,6 +494,7 @@
             $('#confirmDeletePoll').data('poll-id', pollId);
         });
     });
+
     </script>
 </body>
 
