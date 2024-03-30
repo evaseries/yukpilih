@@ -11,7 +11,7 @@ class VoteController extends Controller
 
     public function index(Request $request)
     {
-
+        return view('poll.vote');
     }
 
     public function store(Request $request)
