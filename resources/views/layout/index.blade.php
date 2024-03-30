@@ -340,7 +340,7 @@
                     <!-- Add delete button and modal for confirmation -->
                       <div class="card-footer">
                         <button type="button" class="btn btn-danger btndelete" id="btndelete" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll"><i class="bi bi-trash"></i></button>
-                        <a href="{{ route('vote.index') }}" type="button" class="btn btn-success vote-poll" data-poll-id="1">Vote</a>
+                        <a  type="button" class="btn btn-success vote-poll" data-poll-id="1">Vote</a>
                         <div class="col-md-auto float-end"
                             <button type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
                         </div>
