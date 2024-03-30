@@ -7,10 +7,9 @@
     <title>Yuk Pilih</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
+    <link rel="shortcut icon" href="https://thumbs.dreamstime.com/z/businesshandphone-195880610.jpg" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
@@ -343,7 +342,7 @@
                         <button type="button" class="btn btn-danger btndelete" id="btndelete" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll"><i class="bi bi-trash"></i></button>
                         <button type="submit" class="btn btn-success">Vote</button>
                         <div class="col-md-auto float-end"
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
+                            <button type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
                         </div>
                       </div>
 
