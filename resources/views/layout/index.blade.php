@@ -59,6 +59,9 @@
                 <button type="button" class="btn btn-primary mt-5 mb-4" data-bs-toggle="modal" data-bs-target="#poll">
                     buat poll
                 </button>
+
+                </div>
+
                 <h3>Hallo, <span id="authUsername"></span></h3>
                 <div class="modal fade" id="poll" tabindex="-1" aria-labelledby="exampleModalLabel"
                     aria-hidden="true">
@@ -112,6 +115,35 @@
                     </div>
                 </div>
             </div>
+            <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="lihathasilLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="lihathasilLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        {{-- <div class="form-group">
+                            <label for="judul_poll">Judul Poll</label>
+                          </div>
+                          <div class="form-group">
+                            <label for="deskripsi_poll">Deskripsi Poll</label>
+                          </div>
+                          <div class="form-group mb-4">
+                            <label for="deadline">Deadline</label>
+                          </div> --}}
+                        <div class="form-group">
+                            <label for="hasil_poll">Hasil Poll</label>
+
+                          <div id="listHasilVote"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
+                </div>
+                </div>
         </div>
     </div>
     </div>
@@ -175,56 +207,8 @@
             </form>
         </div>
     </div>
-    {{-- modal lihat hasil --}}
-    <!-- Modal -->
-    <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Poll</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="judul_poll">Judul Poll</label>
-                        <input type="text" class="form-control" id="judul_poll" name="title"
-                            placeholder="Masukkan Judul Poll">
-                    </div>
-                    <div class="form-group">
-                        <label for="deskripsi_poll">Deskripsi Poll</label>
-                        <input type="text" class="form-control" id="deskripsi_poll" name="description"
-                            placeholder="Masukkan Deskripsi Poll">
-                    </div>
-                    <div class="form-group mb-4">
-                        <label for="deadline">Deadline</label>
-                        <input type="date" class="form-control" id="deadline" name="deadline">
-                    </div>
-                    <div class="form-group">
-                        <label for="hasil_poll">Hasil Poll</label>
-                        <div class="progress">
-                            <div class="progress-bar bg-success" role="progressbar" style="width: 25%"
-                                aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
-                        </div>
-                        <div class="progress mt-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%"
-                                aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
-                        </div>
-                        <div class="progress mt-2">
-                            <div class="progress-bar bg-warning" role="progressbar" style="width: 75%"
-                                aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
-                        </div>
-                        <div class="progress mt-2">
-                            <div class="progress-bar bg-danger" role="progressbar" style="width: 100%"
-                                aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
+
     </div>
     </div>
     </div>
@@ -239,6 +223,7 @@
     <script>
 
         var pollID = '';
+        var choiceID = '';
 
         getUserInfo();
 
@@ -269,6 +254,10 @@
                 }
             });
         });
+
+        function changeChoice(id){
+            choiceID = id;
+        }
 
         function getToken() {
             return localStorage.getItem('token');
@@ -315,7 +304,7 @@
                         let choices = element.choices.map((choice) => {
                             return `<div>
                                 <label for="p_${choice.id}">
-                                    <input type="radio" id="p_${choice.id}" name="p_${element.id}" value="${choice.id}">
+                                    <input onchange="changeChoice(${choice.id})" type="radio" id="p_${choice.id}" name="p_${element.id}" value="${choice.id}">
                                     <span>${choice.choice}</span>
                                 </label>
                                 </div>`
@@ -333,59 +322,15 @@
                     <!-- Add delete button and modal for confirmation -->
                       <div class="card-footer">
                         <button type="button" class="btn btn-danger btndelete" id="btndelete" data-poll-id="${element.id}" data-bs-toggle="modal" data-bs-target="#confirmDeletePoll"><i class="bi bi-trash"></i></button>
-                        <a  type="button" class="btn btn-success vote-poll" data-poll-id="1">Vote</a>
-                        <div class="col-md-auto float-end"
-                            <button type="button" class="bg-warning" data-bs-toggle="modal" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
+                        <button   type="button" class="btn btn-success vote-poll" action="/api/poll/:POLLID/vote/:CHOICEID" data-poll-id="${element.id}">Vote</button>
+                        <div class="col-md-auto float-end">
+                            <button type="button" class="bg-warning lihatpoll" data-bs-toggle="modal" data-poll-id="${element.id}" data-bs-target="#lihathasil">Lihat Hasil Poll</button>
                         </div>
                       </div>
 
                     </div>
                 </div>
-            </div>
-            {{-- modal lihat hasil --}}
-            <!-- Modal -->
-            <div class="modal fade" id="lihathasil" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal Poll</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                    <div class="form-group">
-                      <label for="judul_poll">Judul Poll</label>
-                      <input type="text" class="form-control" id="judul_poll" name="title" placeholder="Masukkan Judul Poll">
-                    </div>
-                    <div class="form-group">
-                      <label for="deskripsi_poll">Deskripsi Poll</label>
-                      <input type="text" class="form-control" id="deskripsi_poll" name="description" placeholder="Masukkan Deskripsi Poll">
-                    </div>
-                    <div class="form-group mb-4">
-                      <label for="deadline">Deadline</label>
-                      <input type="date" class="form-control" id="deadline" name="deadline">
-                    </div>
-                    <div class="form-group">
-                      <label for="hasil_poll">Hasil Poll</label>
-                      <div class="progress">
-                        <div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Vote 1</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">Vote 2</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">Vote 3</div>
-                      </div>
-                      <div class="progress mt-2">
-                        <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">Vote 4</div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                  </div>
-                </div>
-              </div>
-            </div>
+
           </div>
         </div>
       </div>`);
@@ -498,6 +443,83 @@
     $(document).ready(function() {
         hideLogoutButton();
     });
+
+    $(document).on('click','.vote-poll',function(e){
+        e.preventDefault();
+            let formElement = $(this);
+            let pollID = formElement.attr('data-poll-id');
+            const url = $(this).attr('action').replace(':POLLID', pollID).replace(':CHOICEID', choiceID);
+            let data = $(this).serialize();
+
+            if(choiceID == ''){
+                alert('Pilih Choice');
+
+                return 0;
+            }
+
+            $.ajax({
+                url: url,
+                type: 'POST',
+                data: data,
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+                },
+                success: function(response) {
+                    // window.location.reload();
+                    alert(response.message);
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error.responseJSON.error);
+                    if (error.responseJSON.error === 'Unauthenticated') {
+                        formElement.find('.pesan').html(
+                            `<div class="alert alert-danger">Username atau Password Salah</div>`)
+                    }
+
+                }
+            });
+    })
+
+
+    $(document).on('click','.lihatpoll',function(e){
+        e.preventDefault();
+        $('#listHasilVote').html("");
+            let formElement = $(this);
+            let pollID = formElement.attr('data-poll-id');
+            const url = '/api/poll/'+pollID;
+            let data = $(this).serialize();
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                beforeSend: function(xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + getToken());
+                },
+                success: function(response) {
+                    // window.location.reload();
+                    let choices = [];
+                    let result = response.result;
+                    for(choice in result){
+                        console.log(choice);
+                        choices += `<div class="d-flex gap-x-3 align-items-center"><span>${choice}</span><div class="progress w-100">
+                                <div class="progress-bar bg-success" role="progressbar" style="width: ${result[choice]}%"
+                                    aria-valuenow="${result[choice]}" aria-valuemin="0" aria-valuemax="100">(${result[choice]}%)</div>
+                            </div></div>`;
+                    }
+                    $('#listHasilVote').html(choices);
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error.responseJSON.error);
+                    if (error.responseJSON.error === 'Unauthenticated') {
+                        formElement.find('.pesan').html(
+                            `<div class="alert alert-danger">Username atau Password Salah</div>`)
+                    }
+
+                }
+            });
+    })
     </script>
 </body>
 
